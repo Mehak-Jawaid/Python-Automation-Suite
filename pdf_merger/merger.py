@@ -145,7 +145,7 @@ def run(
         print(f"\nError: {exc}")
         return 1
 
-    print(f"\n✓ {output.name} created successfully ({pages} pages).")
+    print(f"\nOK: {output.name} created successfully ({pages} pages).")
     return 0
 
 

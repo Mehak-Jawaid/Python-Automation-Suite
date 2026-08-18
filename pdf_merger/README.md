@@ -18,7 +18,7 @@ Output: Application.pdf
 
 Merge PDFs? [y/n]: y
 
-✓ Application.pdf created successfully (12 pages).
+OK: Application.pdf created successfully (12 pages).
 ```
 
 ## Features
