@@ -214,12 +214,15 @@ def run(
             attachment=attachment,
         )
         send_email(message, sender=sender, password=password, host=host, port=port)
-    except smtplib.SMTPAuthenticationError:
+    except smtplib.SMTPAuthenticationError as exc:
+        detail = " ".join(str(part) for part in exc.args if part)
         print(
             "\nError: login failed. Check EMAIL_ADDRESS / EMAIL_PASSWORD.\n"
             "  Gmail: use an App Password + smtp.gmail.com\n"
             "  Hotmail/Outlook: use an App Password + smtp-mail.outlook.com"
         )
+        if detail:
+            print(f"  Server said: {detail}")
         return 1
     except smtplib.SMTPException as exc:
         print(f"\nError sending email: {exc}")
