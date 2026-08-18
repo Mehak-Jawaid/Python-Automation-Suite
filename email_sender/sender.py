@@ -45,8 +45,10 @@ def load_dotenv_if_present() -> None:
         key, _, value = line.partition("=")
         key = key.strip()
         value = value.strip().strip("'").strip('"')
-        # Do not overwrite variables already set in the real environment
-        if key and key not in os.environ:
+        # Project .env wins for EMAIL_* so local config is predictable
+        if key.startswith("EMAIL_"):
+            os.environ[key] = value
+        elif key and key not in os.environ:
             os.environ[key] = value
 
 
